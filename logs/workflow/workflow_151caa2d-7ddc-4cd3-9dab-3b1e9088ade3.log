@@ -1,0 +1,78 @@
+2026-02-06 11:01:53 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 11:01:53 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 11:01:54 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 11:01:54 | INFO     |    Reasoning: The query is a short greeting with no product request, so it should stay in conversation mode.
+2026-02-06 11:01:54 | INFO     | ⚙️  Decider: Refined query: hi
+2026-02-06 11:02:12 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 11:02:12 | INFO     | ⚙️  Decider: Processing query: find me porn videos
+2026-02-06 11:02:13 | INFO     | 🎯 Decision: Query='find me porn videos' → Mode=conversation
+2026-02-06 11:02:13 | INFO     |    Reasoning: The query contains explicit sexual content, triggering the safety fallback to conversation mode.
+2026-02-06 11:02:13 | INFO     | ⚙️  Decider: Refined query: find me porn videos
+2026-02-06 11:02:41 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 11:02:41 | INFO     | ⚙️  Decider: Processing query: find me a tv
+2026-02-06 11:02:42 | INFO     | 🎯 Decision: Query='find me a tv' → Mode=agentic
+2026-02-06 11:02:42 | INFO     |    Reasoning: The user requests a TV with no prior product context, indicating a new product search.
+2026-02-06 11:02:42 | INFO     | ⚙️  Decider: Refined query: find me a tv
+2026-02-06 11:02:43 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 11:02:43 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-06 11:02:43 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 11:03:02 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-06 11:03:03 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 11:03:03 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-06 11:03:03 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 11:03:03 | INFO     | ⚙️  Query Refinement: Refining: 'find me a tv'
+2026-02-06 11:03:04 | INFO     | ⚙️  Query Refinement: Result: 'Sony 55 inch 4K streaming TV under 50000'
+2026-02-06 11:03:04 | INFO     | ⚙️  Data Retrieval: Processing query: 'Sony 55 inch 4K streaming TV under 50000'
+2026-02-06 11:03:04 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 11:03:11 | INFO     | ⚙️  Data Retrieval: Retrieved 6 products from web
+2026-02-06 11:03:11 | INFO     | ⚙️  Response Generator: Processing query: 'find me a tv'
+2026-02-06 11:03:11 | INFO     | ⚙️  Response Generator: Filtering 6 products
+2026-02-06 11:03:12 | INFO     | ⚙️  Response Generator: Found 4 matches
+2026-02-06 11:03:14 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 11:49:27 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 11:49:27 | INFO     | ⚙️  Decider: Processing query: find me shoes
+2026-02-06 11:49:28 | INFO     | 🎯 Decision: Query='find me shoes' → Mode=agentic
+2026-02-06 11:49:28 | INFO     |    Reasoning: User requests a completely different product type (shoes) than the previously discussed TV, so it should be routed to agentic for a new product search.
+2026-02-06 11:49:28 | INFO     | ⚙️  Decider: Refined query: find me shoes
+2026-02-06 11:49:28 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 11:49:28 | INFO     | ⚙️  Info Collector: Generating questions for 'shoes'
+2026-02-06 11:49:30 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 11:49:50 | INFO     | ⚙️  Info Collector: Generating questions for 'shoes'
+2026-02-06 11:49:53 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 11:49:53 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-06 11:49:53 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 11:49:53 | INFO     | ⚙️  Query Refinement: Refining: 'find me shoes'
+2026-02-06 11:49:53 | INFO     | ⚙️  Query Refinement: Result: 'Nike red running shoes size 7 for sports'
+2026-02-06 11:49:53 | INFO     | ⚙️  Data Retrieval: Processing query: 'Nike red running shoes size 7 for sports'
+2026-02-06 11:49:53 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 11:49:58 | INFO     | ⚙️  Data Retrieval: Retrieved 2 products from web
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: Processing query: 'find me shoes'
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: Filtering 2 products
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: Found 0 matches
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: No matches, using web search
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: Searching web for: 'buy Nike red running shoes size 7 for sports price'
+2026-02-06 11:49:58 | INFO     | ⚙️  Response Generator: Using Tool: Google Search (Serper)
+2026-02-06 11:50:00 | INFO     | ⚙️  Response Generator: Web search returned 1448 chars
+2026-02-06 11:50:02 | INFO     | ⚙️  Response Generator: Extracted 7 products from web
+2026-02-06 11:50:04 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 11:50:47 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 11:50:47 | INFO     | ⚙️  Decider: Processing query: what was the last product i asked about ?
+2026-02-06 11:50:48 | INFO     | 🎯 Decision: Query='what was the last product i asked about ?' → Mode=conversation
+2026-02-06 11:50:48 | INFO     |    Reasoning: The user is asking about the previously mentioned product, which is an attribute/query about an existing product.
+2026-02-06 11:50:48 | INFO     | ⚙️  Decider: Refined query: What was the last product I asked about?
+2026-02-06 11:50:48 | INFO     | ⚙️  Conversational: Product: Nike Pegasus Premium Men's Road Running Shoes
+2026-02-06 11:50:48 | INFO     | ⚙️  Conversational: User preferences: ['What shoe size do you usually wear?', 'Is there a particular color or color palette you have in mind?', 'Do you have a preferred brand or any brands you’d like to avoid?', 'What type of shoes are you looking for (e.g., running, casual, formal)?', 'Will you be using the shoes for a specific activity or occasion (e.g., daily wear, sports, work events)?']
+2026-02-06 11:51:06 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 11:51:06 | INFO     | ⚙️  Decider: Processing query: and before that ?
+2026-02-06 11:51:07 | INFO     | 🎯 Decision: Query='and before that ?' → Mode=conversation
+2026-02-06 11:51:07 | INFO     |    Reasoning: The user is asking about a prior product mentioned in the conversation, which is a follow‑up about existing items.
+2026-02-06 11:51:07 | INFO     | ⚙️  Decider: Refined query: What was the product you recommended before the last one?
+2026-02-06 11:51:07 | INFO     | ⚙️  Conversational: Product: Nike Pegasus Premium Men's Road Running Shoes
+2026-02-06 11:51:07 | INFO     | ⚙️  Conversational: User preferences: ['What shoe size do you usually wear?', 'Is there a particular color or color palette you have in mind?', 'Do you have a preferred brand or any brands you’d like to avoid?', 'What type of shoes are you looking for (e.g., running, casual, formal)?', 'Will you be using the shoes for a specific activity or occasion (e.g., daily wear, sports, work events)?']
+2026-02-06 11:51:53 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 11:51:53 | INFO     | ⚙️  Decider: Processing query: i asked about tv before that you forgot ?
+2026-02-06 11:51:54 | INFO     | 🎯 Decision: Query='i asked about tv before that you forgot ?' → Mode=conversation
+2026-02-06 11:51:54 | INFO     |    Reasoning: The user is asking about a previously mentioned TV product, which is a follow‑up about an existing item.
+2026-02-06 11:51:54 | INFO     | ⚙️  Decider: Refined query: What TV product did I ask about earlier?
+2026-02-06 11:51:55 | INFO     | ⚙️  Conversational: Product: Nike Pegasus Premium Men's Road Running Shoes
+2026-02-06 11:51:55 | INFO     | ⚙️  Conversational: User preferences: ['What shoe size do you usually wear?', 'Is there a particular color or color palette you have in mind?', 'Do you have a preferred brand or any brands you’d like to avoid?', 'What type of shoes are you looking for (e.g., running, casual, formal)?', 'Will you be using the shoes for a specific activity or occasion (e.g., daily wear, sports, work events)?']

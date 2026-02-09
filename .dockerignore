@@ -1,0 +1,17 @@
+__pycache__
+venv
+.env
+.git
+.gitignore
+.dockerignore
+secrets.toml
+logs/
+debug.log
+error.log
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.devcontainer
+.langgraph_api
+

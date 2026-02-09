@@ -1,0 +1,5 @@
+2026-02-06 12:41:25 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 12:41:25 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 12:41:26 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 12:41:26 | INFO     |    Reasoning: The query is a short greeting with no product request, so it should be handled as general conversation.
+2026-02-06 12:41:26 | INFO     | ⚙️  Decider: Refined query: hi

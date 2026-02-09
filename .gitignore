@@ -1,0 +1,36 @@
+# Environment variables and secrets
+.env
+secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Logs
+
+*.log
+debug.log
+error.log
+
+# Streamlit
+.streamlit/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Tests
+tests
+
+# LangGraph
+.langgraph_api
+
+

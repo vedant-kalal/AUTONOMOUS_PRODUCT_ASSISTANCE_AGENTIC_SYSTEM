@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: langgraph_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: chatbot_memory
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: product_assistant_app
+    ports:
+      - "8501:8501"
+    environment:
+      - POSTGRES_DB_URL=postgresql://postgres:postgrespassword@postgres:5432/chatbot_memory
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - SERPER_API_KEY=${SERPER_API_KEY}
+      - LANGCHAIN_TRACING_V2=${LANGCHAIN_TRACING_V2}
+      - LANGCHAIN_ENDPOINT=${LANGCHAIN_ENDPOINT}
+      - LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}
+      - LANGCHAIN_PROJECT=${LANGCHAIN_PROJECT}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Mount .env so streamlit_app.py can read it if needed, 
+    # though env vars above typically take precedence.
+    # Also allows hot-reloading code if we mounted the volume, 
+    # but for now let's stick to a clean build.
+
+volumes:
+  postgres_data:

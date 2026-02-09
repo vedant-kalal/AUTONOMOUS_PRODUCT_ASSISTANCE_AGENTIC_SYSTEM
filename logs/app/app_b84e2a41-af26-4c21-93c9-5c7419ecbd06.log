@@ -1,0 +1,85 @@
+2026-02-06 12:16:19 | INFO     | ================================================================================
+2026-02-06 12:16:19 | INFO     | 🟢 NEW CHAT | User: hi
+2026-02-06 12:16:19 | INFO     | ================================================================================
+2026-02-06 12:16:24 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:16:24 | INFO     | 🤖 AI Response:
+Hello! How can I help you today?
+2026-02-06 12:16:24 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:16:31 | INFO     | ================================================================================
+2026-02-06 12:16:31 | INFO     | 🟢 NEW CHAT | User: find me bottle
+2026-02-06 12:16:31 | INFO     | ================================================================================
+2026-02-06 12:17:05 | INFO     | ┌─ Q&A SESSION ────────────────────────────────────────┐
+2026-02-06 12:17:05 | INFO     | │ Q1: What capacity (in ounces or milliliters) are you looking for in a bottle?
+2026-02-06 12:17:05 | INFO     | │ A1: 1 litre
+2026-02-06 12:17:05 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:17:05 | INFO     | │ Q2: Do you prefer a specific material, such as stainless steel, glass, or BPA‑free plastic?
+2026-02-06 12:17:05 | INFO     | │ A2: stainless
+2026-02-06 12:17:05 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:17:05 | INFO     | │ Q3: Will you need the bottle to keep drinks hot or cold for extended periods?
+2026-02-06 12:17:05 | INFO     | │ A3: thermos type
+2026-02-06 12:17:05 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:17:05 | INFO     | │ Q4: Are there any particular lid styles or features (e.g., flip‑top, straw, wide mouth) you prefer?
+2026-02-06 12:17:05 | INFO     | │ A4: nope
+2026-02-06 12:17:05 | INFO     | └──────────────────────────────────────────────────────┘
+2026-02-06 12:17:58 | INFO     | ================================================================================
+2026-02-06 12:17:58 | INFO     | 🟢 NEW CHAT | User: find me an oven
+2026-02-06 12:17:58 | INFO     | ================================================================================
+2026-02-06 12:19:59 | INFO     | ┌─ Q&A SESSION ────────────────────────────────────────┐
+2026-02-06 12:19:59 | INFO     | │ Q1: What is your budget range for the oven?
+2026-02-06 12:19:59 | INFO     | │ A1: 20000 rupees
+2026-02-06 12:19:59 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:19:59 | INFO     | │ Q2: Do you prefer an electric or gas oven?
+2026-02-06 12:19:59 | INFO     | │ A2: 
+2026-02-06 12:19:59 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:19:59 | INFO     | │ Q3: What capacity or size do you need to fit your cooking habits?
+2026-02-06 12:19:59 | INFO     | │ A3: 
+2026-02-06 12:19:59 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 12:19:59 | INFO     | │ Q4: Are there any specific features you’re looking for, such as convection, steam, or smart controls?
+2026-02-06 12:19:59 | INFO     | │ A4: 
+2026-02-06 12:19:59 | INFO     | └──────────────────────────────────────────────────────┘
+2026-02-06 12:20:26 | INFO     | ================================================================================
+2026-02-06 12:20:26 | INFO     | 🟢 NEW CHAT | User: what was last product recommended ?
+2026-02-06 12:20:26 | INFO     | ================================================================================
+2026-02-06 12:20:29 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:20:29 | INFO     | 🤖 AI Response:
+The most recent product I recommended was the **Morphy Richards 60 RCSS Oven**.
+
+**Key details**
+
+| Feature | Info |
+|---------|------|
+| **Product** | Morphy Richards 60 RCSS Oven |
+| **Price** | ₹13,000 (well within your ₹20,000 budget) |
+| **Why it fits you** | • Designed for baking – even heat distribution for cakes, cookies, breads, etc.<br>• Simple, reliable design with no extra features you don’t need (no self‑cleaning, smart connectivity, etc.)<br>• Trusted brand known for durability |
+
+If you’d like more options or additional information (e.g., dimensions, warranty), just let me know!
+2026-02-06 12:20:29 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:20:36 | INFO     | ================================================================================
+2026-02-06 12:20:36 | INFO     | 🟢 NEW CHAT | User: before that /
+2026-02-06 12:20:36 | INFO     | ================================================================================
+2026-02-06 12:20:39 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:20:39 | INFO     | 🤖 AI Response:
+Sure! The product you were shown **before** the Morphy Richards oven was:
+
+**The Rock Stainless Steel Beverage Bottle 1 L**  
+
+| Detail | Information |
+|--------|-------------|
+| **Brand** | Thermos |
+| **Category** | Beverage Bottle |
+| **Capacity** | 1 litre (≈ 33 oz) |
+| **Material** | Stainless‑steel (insulated) |
+| **Key Features** | • Leak‑proof design  <br>• Extra‑large ergonomic handle with a soft, non‑slip grip  <br>• Keeps drinks hot **or** cold for extended periods (Thermos‑type insulation) |
+| **Lid style** | Standard screw‑on (no special flip‑top, straw, or wide‑mouth features) |
+| **Price** | Not listed in the current context |
+| **URL / Image** | Not available in the stored data |
+
+If you’d like more information—such as pricing, where to buy it, or alternative bottle options—just let me know and I can look that up for you!
+2026-02-06 12:20:39 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:20:45 | INFO     | ================================================================================
+2026-02-06 12:20:45 | INFO     | 🟢 NEW CHAT | User: great thank you
+2026-02-06 12:20:45 | INFO     | ================================================================================
+2026-02-06 12:20:50 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 12:20:50 | INFO     | 🤖 AI Response:
+You’re welcome! 😊 If you’d like more details, pricing, or help finding a place to buy the Thermos Rock bottle (or anything else), just let me know. Happy sipping!
+2026-02-06 12:20:50 | INFO     | --------------------------------------------------------------------------------

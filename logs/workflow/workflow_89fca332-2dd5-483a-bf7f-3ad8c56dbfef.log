@@ -1,0 +1,8 @@
+2026-02-06 11:49:06 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 11:49:06 | INFO     | ⚙️  Decider: Processing query: find me shoes
+2026-02-06 11:49:07 | INFO     | 🎯 Decision: Query='find me shoes' → Mode=agentic
+2026-02-06 11:49:07 | INFO     |    Reasoning: The user is requesting a brand‑new product search with no prior context
+2026-02-06 11:49:07 | INFO     | ⚙️  Decider: Refined query: find me shoes
+2026-02-06 11:49:07 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 11:49:07 | INFO     | ⚙️  Info Collector: Generating questions for 'shoes'
+2026-02-06 11:49:08 | INFO     | ⚙️  Info Collector: Generated 5 questions

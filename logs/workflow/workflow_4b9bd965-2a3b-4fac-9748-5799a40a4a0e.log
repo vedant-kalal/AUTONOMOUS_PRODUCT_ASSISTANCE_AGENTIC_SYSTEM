@@ -1,0 +1,74 @@
+2026-02-06 12:26:36 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 12:26:36 | INFO     | ⚙️  Decider: Processing query: hi heelo
+2026-02-06 12:26:36 | INFO     | 🎯 Decision: Query='hi heelo' → Mode=conversation
+2026-02-06 12:26:36 | INFO     |    Reasoning: The query is a short, vague greeting, so it should be handled as a conversation.
+2026-02-06 12:26:36 | INFO     | ⚙️  Decider: Refined query: hi heelo
+2026-02-06 12:26:38 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:26:38 | INFO     | ⚙️  Decider: Processing query: hola
+2026-02-06 12:26:39 | INFO     | 🎯 Decision: Query='hola' → Mode=conversation
+2026-02-06 12:26:39 | INFO     |    Reasoning: The query is a simple greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 12:26:39 | INFO     | ⚙️  Decider: Refined query: hola
+2026-02-06 12:26:43 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:26:43 | INFO     | ⚙️  Decider: Processing query: how are you ?
+2026-02-06 12:26:44 | INFO     | 🎯 Decision: Query='how are you ?' → Mode=conversation
+2026-02-06 12:26:44 | INFO     |    Reasoning: The query is a general chit‑chat greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 12:26:44 | INFO     | ⚙️  Decider: Refined query: how are you ?
+2026-02-06 12:26:48 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:26:48 | INFO     | ⚙️  Decider: Processing query: kem cho majama ?
+2026-02-06 12:26:49 | INFO     | 🎯 Decision: Query='kem cho majama ?' → Mode=conversation
+2026-02-06 12:26:49 | INFO     |    Reasoning: The query is a casual greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 12:26:49 | INFO     | ⚙️  Decider: Refined query: kem cho majama ?
+2026-02-06 12:26:58 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:26:58 | INFO     | ⚙️  Decider: Processing query: mane ek oven jiye che 
+2026-02-06 12:26:59 | INFO     | 🎯 Decision: Query='mane ek oven jiye che ' → Mode=agentic
+2026-02-06 12:26:59 | INFO     |    Reasoning: User is requesting a new product (an oven) with no prior product context, so it is a brand‑new search
+2026-02-06 12:26:59 | INFO     | ⚙️  Decider: Refined query: I need an oven
+2026-02-06 12:27:00 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 12:27:00 | INFO     | ⚙️  Info Collector: Generating questions for 'oven'
+2026-02-06 12:27:00 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 12:27:21 | INFO     | ⚙️  Info Collector: Generating questions for 'oven'
+2026-02-06 12:27:23 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 12:27:23 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-06 12:27:23 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 12:27:23 | INFO     | ⚙️  Query Refinement: Refining: 'mane ek oven jiye che '
+2026-02-06 12:27:23 | INFO     | ⚙️  Query Refinement: Result: 'smart baking oven under 50000'
+2026-02-06 12:27:23 | INFO     | ⚙️  Data Retrieval: Processing query: 'smart baking oven under 50000'
+2026-02-06 12:27:23 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 12:27:28 | INFO     | ⚙️  Data Retrieval: Retrieved 5 products from web
+2026-02-06 12:27:28 | INFO     | ⚙️  Response Generator: Processing query: 'mane ek oven jiye che '
+2026-02-06 12:27:28 | INFO     | ⚙️  Response Generator: Filtering 5 products
+2026-02-06 12:27:29 | INFO     | ⚙️  Response Generator: Found 3 matches
+2026-02-06 12:27:32 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 12:27:48 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 12:27:48 | INFO     | ⚙️  Decider: Processing query: eng-guj bolo dost
+2026-02-06 12:27:49 | INFO     | 🎯 Decision: Query='eng-guj bolo dost' → Mode=conversation
+2026-02-06 12:27:49 | INFO     |    Reasoning: The query is a short, non‑product request for language mixing, so it should stay in conversation mode.
+2026-02-06 12:27:49 | INFO     | ⚙️  Decider: Refined query: Please respond in a mix of English and Gujarati.
+2026-02-06 12:27:50 | INFO     | ⚙️  Conversational: Primary Context: Breville Mini Smart Oven BOV450XL
+2026-02-06 12:27:50 | INFO     | ⚙️  Conversational: History Depth: 1 items
+2026-02-06 12:28:22 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 12:28:22 | INFO     | ⚙️  Decider: Processing query: find me a ram 
+2026-02-06 12:28:23 | INFO     | 🎯 Decision: Query='find me a ram ' → Mode=agentic
+2026-02-06 12:28:23 | INFO     |    Reasoning: The user requests a RAM, which is a completely different product type from the previously discussed oven.
+2026-02-06 12:28:23 | INFO     | ⚙️  Decider: Refined query: find me a RAM (computer memory)
+2026-02-06 12:28:41 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 12:28:41 | INFO     | ⚙️  Info Collector: Generating questions for 'ram'
+2026-02-06 12:28:43 | INFO     | ⚙️  Info Collector: Generated 4 questions
+2026-02-06 12:29:22 | INFO     | ⚙️  Info Collector: Generating questions for 'ram'
+2026-02-06 12:29:23 | INFO     | ⚙️  Info Collector: Generated 4 questions
+2026-02-06 12:29:23 | INFO     | ⚙️  Info Collector: Collected 4 answers
+2026-02-06 12:29:23 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 12:29:23 | INFO     | ⚙️  Query Refinement: Refining: 'find me a ram '
+2026-02-06 12:29:24 | INFO     | ⚙️  Query Refinement: Result: '4GB desktop RGB RAM'
+2026-02-06 12:29:24 | INFO     | ⚙️  Data Retrieval: Processing query: '4GB desktop RGB RAM'
+2026-02-06 12:29:24 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 12:29:27 | INFO     | ⚙️  Data Retrieval: Retrieved 1 products from web
+2026-02-06 12:29:27 | INFO     | ⚙️  Response Generator: Processing query: 'find me a ram '
+2026-02-06 12:29:27 | INFO     | ⚙️  Response Generator: Filtering 1 products
+2026-02-06 12:29:28 | INFO     | ⚙️  Response Generator: Found 0 matches
+2026-02-06 12:29:28 | INFO     | ⚙️  Response Generator: No matches, using web search
+2026-02-06 12:29:28 | INFO     | ⚙️  Response Generator: Searching web for: 'buy 4GB desktop RGB RAM price'
+2026-02-06 12:29:28 | INFO     | ⚙️  Response Generator: Using Tool: Google Search (Serper)
+2026-02-06 12:29:29 | INFO     | ⚙️  Response Generator: Web search returned 1529 chars
+2026-02-06 12:29:41 | INFO     | ⚙️  Response Generator: Extracted 10 products from web
+2026-02-06 12:29:42 | INFO     | ⚙️  Response Generator: Generated final response

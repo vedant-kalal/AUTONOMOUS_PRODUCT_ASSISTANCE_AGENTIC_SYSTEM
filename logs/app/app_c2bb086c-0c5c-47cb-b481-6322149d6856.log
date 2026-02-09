@@ -1,0 +1,68 @@
+2026-02-06 10:49:50 | INFO     | ================================================================================
+2026-02-06 10:49:50 | INFO     | 🟢 NEW CHAT | User: hi
+2026-02-06 10:49:50 | INFO     | ================================================================================
+2026-02-06 10:49:52 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:49:52 | INFO     | 🤖 AI Response:
+Hello! How can I help you today?
+2026-02-06 10:49:52 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:50:00 | INFO     | ================================================================================
+2026-02-06 10:50:00 | INFO     | 🟢 NEW CHAT | User: why are you?
+2026-02-06 10:50:00 | INFO     | ================================================================================
+2026-02-06 10:50:03 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:50:03 | INFO     | 🤖 AI Response:
+I’m an AI‑powered product assistant, built to help you find information, compare options, and answer any questions you have about the products we offer. Think of me as a friendly, always‑available guide that can pull up specs, reviews, images, and recommendations so you can make confident buying decisions—without having to hunt through endless pages yourself. How can I assist you today?
+2026-02-06 10:50:03 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:50:11 | INFO     | ================================================================================
+2026-02-06 10:50:11 | INFO     | 🟢 NEW CHAT | User: find me shoes
+2026-02-06 10:50:11 | INFO     | ================================================================================
+2026-02-06 10:50:45 | INFO     | ┌─ Q&A SESSION ────────────────────────────────────────┐
+2026-02-06 10:50:45 | INFO     | │ Q1: What shoe size do you usually wear?
+2026-02-06 10:50:45 | INFO     | │ A1: 7
+2026-02-06 10:50:45 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 10:50:45 | INFO     | │ Q2: What type of shoes are you looking for (e.g., running, casual, formal)?
+2026-02-06 10:50:45 | INFO     | │ A2: football studs
+2026-02-06 10:50:45 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 10:50:45 | INFO     | │ Q3: Do you have a preferred brand or any brands you’d like to avoid?
+2026-02-06 10:50:45 | INFO     | │ A3: nike or adidas
+2026-02-06 10:50:45 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 10:50:45 | INFO     | │ Q4: Is there a particular color or style you have in mind?
+2026-02-06 10:50:45 | INFO     | │ A4: nope
+2026-02-06 10:50:45 | INFO     | │ ──────────────────────────────────────────────────────
+2026-02-06 10:50:45 | INFO     | │ Q5: Will you be using them for a specific activity or occasion (e.g., daily wear, sports, work events)?
+2026-02-06 10:50:45 | INFO     | │ A5: football
+2026-02-06 10:50:45 | INFO     | └──────────────────────────────────────────────────────┘
+2026-02-06 10:51:17 | INFO     | ================================================================================
+2026-02-06 10:51:17 | INFO     | 🟢 NEW CHAT | User: okay my budget is under 100 dollars 
+2026-02-06 10:51:17 | INFO     | ================================================================================
+2026-02-06 10:51:25 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:51:25 | INFO     | 🤖 AI Response:
+Here are some solid options you can snag for **under $100** (or very close to it) and a few tips on how to get the best deal:
+
+| Brand / Model | Approx. Price (per the results) | Where to Find it | Quick Notes |
+|---------------|--------------------------------|------------------|-------------|
+| **Nike Premier 3** | Usually <$100 (often on sale) | <http://shrsl.com/4ltf8> | Classic low‑profile boot, good for firm‑ground (FG) surfaces. |
+| **Nike Tiempo Legend 8 Elite FG (Size 7)** | $50 (pre‑owned) | Nike.com (pre‑owned section) | Premium leather feel at a fraction of the price. Check condition photos. |
+| **Nike Premier FG** | List price $110, but frequently drops below $100 with Nike’s 20 % member discount | Nike.com (member sign‑up is free) | Solid all‑rounder; look for “member‑only” promos. |
+| **Alpha Menace Strong Men’s Football Cleats (II5139‑010)** | Under $100 (exact price not listed, but shown as an affordable option) | Sports Direct / Nike.com | Aggressive traction pattern, good for turf and firm ground. |
+| **Adidas Adizero Impact+** | Under $100 (often on clearance) | Adidas.com or Sports Direct | Lightweight, great for speed‑oriented players. |
+| **Various “Under $100” listings on Sports Direct** | Hundreds of pairs under $100 | Sports Direct website | Filter by “Men’s Turf Football Shoes” or “Men’s Soccer Shoes $100 & Under”. |
+
+### How to Make the Most of Your $100 Budget
+1. **Use the discount code** `UPPER90` at checkout on the sites that list it (the search snippet mentions a 10 % off code). That can push a $110 boot into the sub‑$100 range.
+2. **Join loyalty programs** – Nike’s free membership often gives a 20 % discount on selected models (e.g., the Premier FG). Same with Adidas and Sports Direct.
+3. **Consider “pre‑owned” or “open‑box”** listings (like the Nike Tiempo Legend 8 Elite FG at $50). They’re usually in excellent condition and come with a return policy.
+4. **Watch clearance sections** – both Nike and Adidas rotate end‑of‑season stock at deep discounts; you can find premium models for $70‑$90.
+5. **Check the surface you’ll play on** – if you mainly play on artificial turf, look for “Turf” or “FG” (firm ground) labels. Most of the boots above work on both turf and natural grass.
+
+### Quick Buying Steps
+1. **Pick a model** from the table that matches your playing surface and style.
+2. **Visit the link** (or search the model on the retailer’s site) and add it to your cart.
+3. **Enter the code** `UPPER90` at checkout (if applicable) and/or sign up for the free member discount.
+4. **Confirm the final price** is ≤ $100 before you complete the purchase.
+5. **Check the return policy** (most sites offer free returns within 30 days) in case the fit isn’t right.
+
+If you need a specific recommendation (e.g., “best for turf” or “most comfortable”), just let me know and I can narrow it down further!
+2026-02-06 10:51:25 | INFO     | --------------------------------------------------------------------------------
+2026-02-06 10:51:59 | INFO     | ================================================================================
+2026-02-06 10:51:59 | INFO     | 🟢 NEW CHAT | User: find me a tv
+2026-02-06 10:51:59 | INFO     | ================================================================================

@@ -1,0 +1,24 @@
+2026-02-09 12:05:31 | INFO     | ⚙️  Decider: State keys: []
+2026-02-09 12:06:37 | INFO     | ⚙️  Decider: State keys: ['user_query']
+2026-02-09 12:06:37 | INFO     | ⚙️  Decider: Processing query: hi
+
+2026-02-09 12:06:38 | INFO     | 🎯 Decision: Query='hi
+' → Mode=conversation
+2026-02-09 12:06:38 | INFO     |    Reasoning: The query is a short greeting, which is general chit‑chat and does not request a new product search.
+2026-02-09 12:06:38 | INFO     | ⚙️  Decider: Refined query: hi
+2026-02-09 12:06:57 | INFO     | ⚙️  Decider: State keys: ['user_query', 'mode', 'final_output', 'refined_query']
+2026-02-09 12:06:57 | INFO     | ⚙️  Decider: Processing query: find me shoes
+
+2026-02-09 12:06:58 | INFO     | 🎯 Decision: Query='find me shoes
+' → Mode=agentic
+2026-02-09 12:06:58 | INFO     |    Reasoning: The user is requesting a new product search with no prior context, so it should be routed to agentic mode.
+2026-02-09 12:06:58 | INFO     | ⚙️  Decider: Refined query: Find me shoes
+2026-02-09 12:06:59 | INFO     | ⚙️  Supervisor: Final output found → ending workflow
+2026-02-09 12:09:43 | INFO     | ⚙️  Decider: State keys: ['user_query', 'mode', 'supervisor_decision', 'intent', 'missing_info', 'validated', 'final_output', 'refined_query']
+2026-02-09 12:09:43 | INFO     | ⚙️  Decider: Processing query: find me shoes
+
+2026-02-09 12:09:44 | INFO     | 🎯 Decision: Query='find me shoes
+' → Mode=agentic
+2026-02-09 12:09:44 | INFO     |    Reasoning: The user is requesting a new product search with no prior context, so it should be routed to agentic mode.
+2026-02-09 12:09:44 | INFO     | ⚙️  Decider: Refined query: Find me shoes
+2026-02-09 12:09:46 | INFO     | ⚙️  Supervisor: Final output found → ending workflow

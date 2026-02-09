@@ -1,0 +1,39 @@
+2026-02-06 10:02:48 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info']
+2026-02-06 10:02:48 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 10:02:49 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 10:02:49 | INFO     |    Reasoning: The query is a short greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 10:02:49 | INFO     | ⚙️  Decider: Refined query: User greets the assistant
+2026-02-06 10:02:56 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 10:02:56 | INFO     | ⚙️  Decider: Processing query: how are you ?
+2026-02-06 10:02:57 | INFO     | 🎯 Decision: Query='how are you ?' → Mode=conversation
+2026-02-06 10:02:57 | INFO     |    Reasoning: The query is a short, vague chit‑chat question, so it should stay in conversation mode.
+2026-02-06 10:02:57 | INFO     | ⚙️  Decider: Refined query: User asks how the assistant is doing
+2026-02-06 10:03:21 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 10:03:21 | INFO     | ⚙️  Decider: Processing query: find me a new trimmer
+2026-02-06 10:03:22 | INFO     | 🎯 Decision: Query='find me a new trimmer' → Mode=agentic
+2026-02-06 10:03:22 | INFO     |    Reasoning: No prior trimmer context exists, and the user is requesting a new product type, so it should be routed to agentic.
+2026-02-06 10:03:22 | INFO     | ⚙️  Decider: Refined query: User wants to find a new trimmer
+2026-02-06 10:03:22 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 10:03:22 | INFO     | ⚙️  Info Collector: Generating questions for 'trimmer'
+2026-02-06 10:03:23 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 10:04:51 | INFO     | ⚙️  Info Collector: Generating questions for 'trimmer'
+2026-02-06 10:04:52 | INFO     | ⚙️  Info Collector: Generated 4 questions
+2026-02-06 10:04:52 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-06 10:04:52 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 10:04:52 | INFO     | ⚙️  Query Refinement: Refining: 'find me a new trimmer'
+2026-02-06 10:04:52 | INFO     | ⚙️  Query Refinement: Result: 'Bombay Shaving Company cordless full body trimmer under 1000 rupees'
+2026-02-06 10:04:52 | INFO     | ⚙️  Data Retrieval: Processing query: 'Bombay Shaving Company cordless full body trimmer under 1000 rupees'
+2026-02-06 10:04:52 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 10:04:59 | INFO     | ⚙️  Data Retrieval: Retrieved 7 products from web
+2026-02-06 10:04:59 | INFO     | ⚙️  Response Generator: Processing query: 'find me a new trimmer'
+2026-02-06 10:04:59 | INFO     | ⚙️  Response Generator: Filtering 7 products
+2026-02-06 10:05:02 | INFO     | ⚙️  Response Generator: Found 2 matches
+2026-02-06 10:05:03 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 10:06:09 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 10:06:09 | INFO     | ⚙️  Decider: Processing query: tell me more about this product
+2026-02-06 10:06:10 | INFO     | 🎯 Decision: Query='tell me more about this product' → Mode=conversation
+2026-02-06 10:06:10 | INFO     |    Reasoning: User asks for more details about the previously recommended trimmer, which is an existing product query
+2026-02-06 10:06:10 | INFO     | ⚙️  Decider: Refined query: User wants more details about the Bombay Shaving Company 11-in-1 Power Groomer Beard & Body Trimmer for Men
+2026-02-06 10:06:11 | INFO     | ⚙️  Conversational: Product: Bombay Shaving Company 11-in-1 Power Groomer Beard & Body Trimmer for Men
+2026-02-06 10:06:11 | INFO     | ⚙️  Conversational: User preferences: ['What is your budget range for the trimmer?', 'Will you be using it mainly for facial hair, body grooming, or both?', 'Do you have any brand preferences or features like waterproof design?', 'Are you looking for specific blade types or adjustable length settings?', 'Do you prefer a corded or cordless trimmer, and if cordless, how important is battery life?']
+2026-02-06 10:06:12 | INFO     | ⚙️  Conversational: Using web search for query

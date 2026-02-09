@@ -1,0 +1,65 @@
+2026-02-05 20:19:58 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info']
+2026-02-05 20:19:58 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-05 20:20:06 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-05 20:20:06 | INFO     |    Reasoning: The query is a short greeting with no product request, so it falls under general chit‑chat.
+2026-02-05 20:20:06 | INFO     | ⚙️  Decider: Refined query: User greets the assistant with a simple 'hi'
+2026-02-06 12:52:14 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info']
+2026-02-06 12:52:14 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 12:52:15 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 12:52:15 | INFO     |    Reasoning: Short greeting with no product intent, so route to conversation
+2026-02-06 12:52:15 | INFO     | ⚙️  Decider: Refined query: hi
+2026-02-06 12:52:20 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 12:52:20 | INFO     | ⚙️  Decider: Processing query: how are you ?
+2026-02-06 12:52:21 | INFO     | 🎯 Decision: Query='how are you ?' → Mode=conversation
+2026-02-06 12:52:21 | INFO     |    Reasoning: The query is a general chit‑chat greeting, so it should be handled as a conversation.
+2026-02-06 12:52:21 | INFO     | ⚙️  Decider: Refined query: how are you ?
+2026-02-06 12:52:31 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 12:52:31 | INFO     | ⚙️  Decider: Processing query: find me tv
+2026-02-06 12:52:32 | INFO     | 🎯 Decision: Query='find me tv' → Mode=agentic
+2026-02-06 12:52:32 | INFO     |    Reasoning: No prior context and the user is requesting a TV, which is a new product search.
+2026-02-06 12:52:32 | INFO     | ⚙️  Decider: Refined query: Find me a TV
+2026-02-06 12:52:33 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 12:52:33 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-06 12:52:34 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 12:52:55 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-06 12:52:56 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 12:52:56 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-06 12:52:56 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 12:52:56 | INFO     | ⚙️  Query Refinement: Refining: 'find me tv'
+2026-02-06 12:52:57 | INFO     | ⚙️  Query Refinement: Result: 'Sony 55 inch 4K TV for movies under 50000 rupees'
+2026-02-06 12:52:57 | INFO     | ⚙️  Data Retrieval: Processing query: 'Sony 55 inch 4K TV for movies under 50000 rupees'
+2026-02-06 12:52:57 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 12:53:02 | INFO     | ⚙️  Data Retrieval: Retrieved 8 products from web
+2026-02-06 12:53:02 | INFO     | ⚙️  Response Generator: Processing query: 'find me tv'
+2026-02-06 12:53:02 | INFO     | ⚙️  Response Generator: Filtering 8 products
+2026-02-06 12:53:04 | INFO     | ⚙️  Response Generator: Found 1 matches
+2026-02-06 12:53:05 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 12:53:25 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 12:53:25 | INFO     | ⚙️  Decider: Processing query: give me more info about it where cna i find it any links /
+2026-02-06 12:53:25 | INFO     | 🎯 Decision: Query='give me more info about it where cna i find it any links /' → Mode=conversation
+2026-02-06 12:53:25 | INFO     |    Reasoning: User asks for more details and purchase links for the previously recommended Sony TV, which is a follow‑up about an existing product.
+2026-02-06 12:53:25 | INFO     | ⚙️  Decider: Refined query: Provide more information about the Sony KD-55X74K 55‑inch Ultra HD 4K Smart LED TV, including where to find it and any purchase links.
+2026-02-06 12:53:26 | INFO     | ⚙️  Conversational: Primary Context: Sony KD-55X74K 55 inch Ultra HD 4K Smart LED TV
+2026-02-06 12:53:26 | INFO     | ⚙️  Conversational: History Depth: 1 items
+2026-02-06 12:53:26 | INFO     | ⚙️  Conversational: Using web search for query
+2026-02-06 12:53:49 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 12:53:49 | INFO     | ⚙️  Decider: Processing query: great thankyou
+2026-02-06 12:53:49 | INFO     | 🎯 Decision: Query='great thankyou' → Mode=conversation
+2026-02-06 12:53:49 | INFO     |    Reasoning: The user expressed gratitude, which is general chit‑chat and does not request a new product search.
+2026-02-06 12:53:49 | INFO     | ⚙️  Decider: Refined query: great thank you
+2026-02-06 12:53:50 | INFO     | ⚙️  Conversational: Primary Context: Sony KD-55X74K 55 inch Ultra HD 4K Smart LED TV
+2026-02-06 12:53:50 | INFO     | ⚙️  Conversational: History Depth: 1 items
+2026-02-06 13:07:16 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 13:07:16 | INFO     | ⚙️  Decider: Processing query: how are you ?
+2026-02-06 13:07:17 | INFO     | 🎯 Decision: Query='how are you ?' → Mode=conversation
+2026-02-06 13:07:17 | INFO     |    Reasoning: The query is a general chit‑chat greeting, not a product request.
+2026-02-06 13:07:17 | INFO     | ⚙️  Decider: Refined query: User is greeting the assistant
+2026-02-06 13:07:18 | INFO     | ⚙️  Conversational: Product: Sony KD-55X74K 55 inch Ultra HD 4K Smart LED TV
+2026-02-06 13:07:18 | INFO     | ⚙️  Conversational: User preferences: ['Do you prefer 4K or 8K resolution?', "What's your budget range for the TV?", 'What screen size are you looking for?', 'Are there any smart TV features or brands you favor?', 'What will you primarily use the TV for (e.g., streaming, gaming, sports)?']
+2026-02-06 13:07:31 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-06 13:07:31 | INFO     | ⚙️  Decider: Processing query: no thanks
+2026-02-06 13:07:32 | INFO     | 🎯 Decision: Query='no thanks' → Mode=conversation
+2026-02-06 13:07:32 | INFO     |    Reasoning: The short phrase 'no thanks' is a vague, general chit‑chat response, not a request for a new product.
+2026-02-06 13:07:32 | INFO     | ⚙️  Decider: Refined query: User declines further assistance
+2026-02-06 13:07:33 | INFO     | ⚙️  Conversational: Product: Sony KD-55X74K 55 inch Ultra HD 4K Smart LED TV
+2026-02-06 13:07:33 | INFO     | ⚙️  Conversational: User preferences: ['Do you prefer 4K or 8K resolution?', "What's your budget range for the TV?", 'What screen size are you looking for?', 'Are there any smart TV features or brands you favor?', 'What will you primarily use the TV for (e.g., streaming, gaming, sports)?']

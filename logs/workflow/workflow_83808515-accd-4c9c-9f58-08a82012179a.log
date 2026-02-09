@@ -1,0 +1,19 @@
+2026-02-05 19:52:10 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info']
+2026-02-05 19:52:10 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-05 19:52:10 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-05 19:52:10 | INFO     |    Reasoning: The query is a short greeting with no product request, so it falls under general chit‑chat.
+2026-02-05 19:52:10 | INFO     | ⚙️  Decider: Refined query: User says hi
+2026-02-05 19:52:17 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query']
+2026-02-05 19:52:17 | INFO     | ⚙️  Decider: Processing query: find me a tv
+2026-02-05 19:52:18 | INFO     | 🎯 Decision: Query='find me a tv' → Mode=agentic
+2026-02-05 19:52:18 | INFO     |    Reasoning: User is initiating a new product search for a TV with no prior context
+2026-02-05 19:52:18 | INFO     | ⚙️  Decider: Refined query: User wants to find a TV
+2026-02-05 19:52:19 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-05 19:52:19 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-05 19:52:20 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-05 19:53:19 | INFO     | ⚙️  Info Collector: Generating questions for 'tv'
+2026-02-05 19:53:20 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-05 19:53:20 | INFO     | ⚙️  Info Collector: Collected 5 answers
+2026-02-05 19:53:20 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-05 19:53:20 | INFO     | ⚙️  Query Refinement: Refining: 'find me a tv'
+2026-02-05 19:53:21 | INFO     | ⚙️  Query Refinement: Result: '55 inch 4K smart TV for streaming under 50000'

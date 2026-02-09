@@ -1,0 +1,16 @@
+langchain
+langgraph
+langchain-groq
+langchain-openai
+langchain-community
+streamlit
+psycopg2-binary
+psycopg[binary]
+psycopg-pool
+pydantic
+httpx
+python-dotenv
+duckduckgo-search
+langgraph-checkpoint-postgres
+rich
+pyfiglet    

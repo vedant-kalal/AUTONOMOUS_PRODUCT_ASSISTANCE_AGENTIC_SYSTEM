@@ -1,0 +1,38 @@
+2026-02-06 12:32:08 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 12:32:08 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 12:32:08 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 12:32:08 | INFO     |    Reasoning: The query is a short greeting with no product request, so it should be handled as conversation.
+2026-02-06 12:32:08 | INFO     | ⚙️  Decider: Refined query: hi
+2026-02-06 12:32:16 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:32:16 | INFO     | ⚙️  Decider: Processing query: who are you ?
+2026-02-06 12:32:17 | INFO     | 🎯 Decision: Query='who are you ?' → Mode=conversation
+2026-02-06 12:32:17 | INFO     |    Reasoning: The query is a general chit‑chat question with no product context, so it should stay in conversation mode.
+2026-02-06 12:32:17 | INFO     | ⚙️  Decider: Refined query: who are you ?
+2026-02-06 12:32:25 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 12:32:25 | INFO     | ⚙️  Decider: Processing query: find me shoes
+2026-02-06 12:32:26 | INFO     | 🎯 Decision: Query='find me shoes' → Mode=agentic
+2026-02-06 12:32:26 | INFO     |    Reasoning: User is requesting a new product (shoes) with no prior context, so it is a brand‑new search
+2026-02-06 12:32:26 | INFO     | ⚙️  Decider: Refined query: find me shoes
+2026-02-06 12:32:28 | INFO     | ⚙️  Supervisor: New product search → routing to info_collector
+2026-02-06 12:32:28 | INFO     | ⚙️  Info Collector: Generating questions for 'shoes'
+2026-02-06 12:32:28 | INFO     | ⚙️  Info Collector: Generated 4 questions
+2026-02-06 12:32:47 | INFO     | ⚙️  Info Collector: Generating questions for 'shoes'
+2026-02-06 12:32:48 | INFO     | ⚙️  Info Collector: Generated 5 questions
+2026-02-06 12:32:48 | INFO     | ⚙️  Info Collector: Collected 4 answers
+2026-02-06 12:32:48 | INFO     | ⚙️  Supervisor: Info collected → proceeding to query refinement
+2026-02-06 12:32:48 | INFO     | ⚙️  Query Refinement: Refining: 'find me shoes'
+2026-02-06 12:32:49 | INFO     | ⚙️  Query Refinement: Result: 'Nike football shoes size 7'
+2026-02-06 12:32:49 | INFO     | ⚙️  Data Retrieval: Processing query: 'Nike football shoes size 7'
+2026-02-06 12:32:49 | INFO     | ⚙️  Data Retrieval: Category not in allowed list → Web Search
+2026-02-06 12:32:53 | INFO     | ⚙️  Data Retrieval: Retrieved 4 products from web
+2026-02-06 12:32:53 | INFO     | ⚙️  Response Generator: Processing query: 'find me shoes'
+2026-02-06 12:32:53 | INFO     | ⚙️  Response Generator: Filtering 4 products
+2026-02-06 12:32:54 | INFO     | ⚙️  Response Generator: Found 3 matches
+2026-02-06 12:32:56 | INFO     | ⚙️  Response Generator: Generated final response
+2026-02-06 12:33:13 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'raw_data', 'refined_query', 'generated_questions']
+2026-02-06 12:33:13 | INFO     | ⚙️  Decider: Processing query: great any more info about it
+2026-02-06 12:33:14 | INFO     | 🎯 Decision: Query='great any more info about it' → Mode=conversation
+2026-02-06 12:33:14 | INFO     |    Reasoning: The user asks for additional details about the previously mentioned Nike Diamond Turf 2 Football Cleats, which is a follow‑up about an existing product.
+2026-02-06 12:33:14 | INFO     | ⚙️  Decider: Refined query: Provide more details about Nike Diamond Turf 2 Football Cleats
+2026-02-06 12:33:15 | INFO     | ⚙️  Conversational: Primary Context: Nike Diamond Turf 2 Football Cleats
+2026-02-06 12:33:15 | INFO     | ⚙️  Conversational: History Depth: 1 items

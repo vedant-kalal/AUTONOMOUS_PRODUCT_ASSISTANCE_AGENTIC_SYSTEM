@@ -1,0 +1,14 @@
+2026-02-06 10:56:34 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'generated_questions']
+2026-02-06 10:56:34 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 10:56:35 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 10:56:35 | INFO     |    Reasoning: The query is a short greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 10:56:35 | INFO     | ⚙️  Decider: Refined query: User says hi
+2026-02-06 10:56:46 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 10:56:46 | INFO     | ⚙️  Decider: Processing query: i want sex
+2026-02-06 10:57:27 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 10:57:27 | INFO     | ⚙️  Decider: Processing query: hi
+2026-02-06 10:57:28 | INFO     | 🎯 Decision: Query='hi' → Mode=conversation
+2026-02-06 10:57:28 | INFO     |    Reasoning: The query is a short greeting with no product intent, so it should stay in conversation mode.
+2026-02-06 10:57:28 | INFO     | ⚙️  Decider: Refined query: User says hi
+2026-02-06 10:57:42 | INFO     | ⚙️  Decider: State keys: ['user_query', 'original_user_query', 'mode', 'supervisor_decision', 'intent', 'final_output', 'collected_info', 'refined_query', 'generated_questions']
+2026-02-06 10:57:42 | INFO     | ⚙️  Decider: Processing query: i want porn vides
