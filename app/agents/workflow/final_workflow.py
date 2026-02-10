@@ -105,9 +105,14 @@ graph.add_edge("response_generator", "memory_store")
 graph.add_edge("memory_store", END)
 
 # Compile with PostgreSQL checkpointer to enable interrupt/resume and thread persistence
-checkpointer_helper = get_checkpointer_helper()
-checkpointer = checkpointer_helper.get_checkpointer()
-app = graph.compile(checkpointer=checkpointer)
+try:
+    checkpointer_helper = get_checkpointer_helper()
+    checkpointer = checkpointer_helper.get_checkpointer()
+    app = graph.compile(checkpointer=checkpointer)
+except Exception as e:
+    # Fallback for environments without DB access (like LangGraph Cloud build step)
+    print(f"Warning: Could not initialize Postgres checkpointer: {e}")
+    app = graph.compile()
 
 
 def get_compiled_app():
