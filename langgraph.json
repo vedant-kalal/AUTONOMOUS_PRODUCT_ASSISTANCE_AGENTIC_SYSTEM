@@ -1,5 +1,7 @@
 {
-  "dependencies": ["."],
+  "dependencies": [
+    "./requirements.txt"
+  ],
   "graphs": {
     "agent": "./app/agents/workflow/final_workflow.py:studio_app"
   },
