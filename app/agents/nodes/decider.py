@@ -33,10 +33,13 @@ def decider_node(state, config):
     try:
         log_node_execution(thread_id, "Decider", f"Processing query: {query}")
         
-        # Get conversation history (thread-specific)
+        # Get conversation history (thread-specific), excluding the very last message 
+        # since it is the user's CURRENT query (already saved to STM before the graph runs).
         recent_messages = Memory_Functions.get_recent_messages(thread_id)
+        # Exclude the last message
+        history_msgs = recent_messages[:-1] if recent_messages else []
         history = "\n".join([f"{m.type}: {m.content}" 
-                            for m in recent_messages[-6:]]) if recent_messages else "No recent conversation"
+                            for m in history_msgs[-5:]]) if history_msgs else "No recent conversation"
         
         # Get conversation summary (thread-specific)
         summary_data = Memory_Functions.get_summary(thread_id)

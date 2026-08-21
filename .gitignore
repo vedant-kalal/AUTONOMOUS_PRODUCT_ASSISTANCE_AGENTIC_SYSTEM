@@ -1,7 +1,7 @@
 # Environment variables and secrets
 .env
 secrets.toml
-
+.venv
 # Python
 __pycache__/
 *.py[cod]

@@ -374,6 +374,9 @@ if "waiting_for_questions" not in st.session_state:
     st.session_state["pending_questions"] = []
     st.session_state["pending_config"] = {}
 
+if "last_products" not in st.session_state:
+    st.session_state["last_products"] = []
+
 
 # ============================ Sidebar ============================
 with st.sidebar:
@@ -386,6 +389,7 @@ with st.sidebar:
         st.session_state["message_history"] = []
         st.session_state["waiting_for_questions"] = False
         st.session_state["pending_questions"] = []
+        st.session_state["last_products"] = []
         
         if new_thread_id not in st.session_state["chat_threads"]:
             st.session_state["chat_threads"].insert(0, new_thread_id)
@@ -463,49 +467,88 @@ with header_col2:
 st.markdown("")
 
 # Display chat history in chronological order (oldest → newest)
-for message in st.session_state["message_history"]:
+for i, message in enumerate(st.session_state["message_history"]):
     # Check if it's a Q&A table format
     if message["role"] == "assistant" and message.get("type") == "qa_table":
         with st.chat_message("assistant"):
-            st.markdown("### 📋 Questions & Answers")
+            st.markdown("### 📋 Your Answers")
             qa_html = '<div class="qa-table">'
             for qa in message["content"]:
-                qa_html += f'<div class="qa-row"><span class="qa-question">Q: {qa["question"]}</span><br><span class="qa-answer">A: {qa["answer"]}</span></div>'
+                qa_html += f'<div class="qa-row"><span class="qa-question">❓ {qa["question"]}</span><br><span class="qa-answer">✅ {qa["answer"]}</span></div>'
             qa_html += '</div>'
             st.markdown(qa_html, unsafe_allow_html=True)
     else:
         with st.chat_message(message["role"]):
-            if "role" == "assistant":
-                 with st.container(border=True):
-                     st.markdown(message["content"])
-            else:
-                 st.markdown(message["content"])
+            st.markdown(message["content"])
+
 
 # Handle questions inline
 if st.session_state.get("waiting_for_questions", False):
+    questions = st.session_state["pending_questions"]
     with st.chat_message("assistant"):
-        st.markdown("### 📋 I need some information:")
-        
-        # Use a form to prevent auto-submit on Enter and stabilize UI
-        with st.form(key=f"qa_form_{st.session_state['thread_id']}"):
+        st.markdown("""
+<div style="
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #0f3460;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:1rem;">
+        <span style="font-size:1.5rem;">🎯</span>
+        <div>
+            <h4 style="color:#e94560; margin:0; font-size:1.1rem;">Personalisation Questions</h4>
+            <p style="color:#a0a0b0; margin:0; font-size:0.85rem;">
+                Answer all questions below to get perfectly matched recommendations
+            </p>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+        # Progress bar
+        st.progress(0, text=f"0 / {len(questions)} answered")
+
+        with st.form(key=f"hitl_form_{st.session_state['thread_id']}"):
             collected_answers = {}
-            for i, question in enumerate(st.session_state["pending_questions"], 1):
+            for i, question in enumerate(questions, 1):
+                st.markdown(f"""
+<div style="
+    display:flex; align-items:flex-start; gap:12px;
+    background:#0f0f1a; border-radius:8px;
+    padding:0.75rem 1rem; margin-bottom:0.5rem;
+    border-left:3px solid #5865f2;
+">
+    <span style="
+        background:#5865f2; color:white; border-radius:50%;
+        width:24px; height:24px; display:flex;
+        align-items:center; justify-content:center;
+        font-size:0.8rem; font-weight:700; flex-shrink:0; margin-top:2px;
+    ">{i}</span>
+    <span style="color:#d0d0e0; font-size:0.95rem;">{question}</span>
+</div>
+""", unsafe_allow_html=True)
                 answer = st.text_input(
-                    f"**{i}.** {question}",
-                    key=f"q_{i}_{st.session_state['thread_id']}",
-                    label_visibility="visible"
+                    label=f"Answer {i}",
+                    placeholder=f"Your answer for question {i}...",
+                    key=f"hitl_q_{i}_{st.session_state['thread_id']}",
+                    label_visibility="collapsed"
                 )
-                if answer:
-                    collected_answers[question] = answer
-            
-            # Submit button
-            submit_clicked = st.form_submit_button("Submit Answers", type="primary")
+                if answer.strip():
+                    collected_answers[question] = answer.strip()
+
+            st.markdown("")
+            submit_clicked = st.form_submit_button(
+                f"✅  Submit All {len(questions)} Answers",
+                type="primary",
+                use_container_width=True
+            )
 
         # Process submission outside the form
         if submit_clicked:
             # Validate all questions answered
-            if len(collected_answers) == len(st.session_state["pending_questions"]) and all(collected_answers.values()):
-                # Store Q&A as table
+            if len(collected_answers) == len(questions) and all(collected_answers.values()):
+                # Store Q&A as table in chat history
                 qa_pairs = [{"question": q, "answer": a} for q, a in collected_answers.items()]
                 st.session_state["message_history"].append({
                     "role": "assistant",
@@ -513,8 +556,7 @@ if st.session_state.get("waiting_for_questions", False):
                     "content": qa_pairs
                 })
                 
-                # Store in memory
-                # Store in memory
+                # Store in STM memory
                 qa_text = "\n".join([f"Q: {q}\nA: {a}" for q, a in collected_answers.items()])
                 Memory_Functions.add_recent_message(
                     AIMessage(content=f"Questions & Answers:\n{qa_text}"),
@@ -524,13 +566,13 @@ if st.session_state.get("waiting_for_questions", False):
                 CONFIG = st.session_state["pending_config"]
                 
                 # Show thinking spinner
-                with st.spinner("🤔 Finding products..."):
+                with st.spinner("🤔 Finding the best products for you..."):
                     try:
-                        # Pass the single dictionary of collected answers
                         result = chatbot.invoke(Command(resume=collected_answers), CONFIG)
                         
                         if result.get("final_output"):
                             response = result["final_output"].get("response", "No response")
+                            products = result["final_output"].get("products", [])
                             
                             st.session_state["message_history"].append({
                                 "role": "assistant",
@@ -542,7 +584,9 @@ if st.session_state.get("waiting_for_questions", False):
                                 st.session_state["thread_id"]
                             )
                             
-                            # Success! Clear waiting state
+                            # Store product images in session for re-render
+                            st.session_state["last_products"] = products
+                            
                             st.session_state["waiting_for_questions"] = False
                             st.session_state["pending_questions"] = []
                             st.session_state["pending_config"] = {}
@@ -631,31 +675,62 @@ if not st.session_state.get("waiting_for_questions", False):
                             # Prepare result from final state
                             result = final_state if final_state else {}
                             
-                            # Check for interrupts
+                            # ── Interrupt detection (fixed: was using str() truthiness) ──
                             current_graph_state = chatbot.get_state(CONFIG)
-                            if current_graph_state.next:
-                                if len(current_graph_state.tasks) > 0 and str(current_graph_state.tasks[0].interrupts):
-                                    interrupts = current_graph_state.tasks[0].interrupts
-                                    if interrupts:
-                                        questions = interrupts[0].value
+                            if current_graph_state.next and len(current_graph_state.tasks) > 0:
+                                interrupts = current_graph_state.tasks[0].interrupts
+                                if interrupts and len(interrupts) > 0:
+                                    questions = interrupts[0].value
+                                    if isinstance(questions, list) and len(questions) > 0:
                                         st.session_state["waiting_for_questions"] = True
                                         st.session_state["pending_questions"] = questions
                                         st.session_state["pending_config"] = CONFIG
                                         st.rerun()
 
-                    # Display response with streaming
+                    # ── Display AI text response ──
                     if result.get("final_output"):
                         response_text = result["final_output"].get("response", "No response")
-                        
-                        # Use a container wrapper for cleaner presentation
-                        with response_placeholder.container(border=True):
+                        products     = result["final_output"].get("products", [])
+
+                        with response_placeholder.container():
                             st.markdown(response_text)
-                        
+
+                            # ── Product image cards ──
+                            image_products = [p for p in products if (
+                                isinstance(p, dict) and p.get("thumbnail")
+                            )]
+                            if image_products:
+                                st.markdown("---")
+                                st.markdown("#### 🛍️ Product Gallery")
+                                cols = st.columns(min(len(image_products), 3))
+                                for idx, prod in enumerate(image_products[:6]):
+                                    col = cols[idx % 3]
+                                    with col:
+                                        thumb = prod.get("thumbnail", "")
+                                        title = prod.get("title", "Product")
+                                        price = prod.get("price")
+                                        rating = prod.get("rating")
+                                        url   = prod.get("url") or prod.get("link")
+                                        brand = prod.get("brand", "")
+                                        try:
+                                            st.image(thumb, use_column_width=True)
+                                        except Exception:
+                                            pass
+                                        price_str  = f"💰 ${price:.2f}" if price else ""
+                                        rating_str = f"⭐ {rating}/5" if rating else ""
+                                        brand_str  = f"🏷️ {brand}" if brand else ""
+                                        meta = " · ".join(filter(None, [price_str, rating_str, brand_str]))
+                                        st.caption(f"**{title}**")
+                                        if meta:
+                                            st.caption(meta)
+                                        if url:
+                                            st.link_button("🛒 View Product", url, use_container_width=True)
+
                         st.session_state["message_history"].append({
                             "role": "assistant",
                             "content": response_text
                         })
-                        
+
                         Memory_Functions.add_recent_message(
                             AIMessage(content=response_text),
                             st.session_state["thread_id"]

@@ -6,6 +6,7 @@ Provides database and checkpointer helper classes for the chatbot application.
 from langgraph.checkpoint.postgres import PostgresSaver
 from app.core.config.settings import POSTGRES_SETTINGS
 import psycopg
+from urllib.parse import quote
 from typing import List, Dict, Optional
 from datetime import datetime
 
@@ -15,9 +16,11 @@ class CheckpointerHelper:
     
     def __init__(self):
         """Initialize PostgreSQL checkpointer"""
+        # URL-encode the password so special chars like @ don't break the connection URL
+        encoded_password = quote(POSTGRES_SETTINGS['password'], safe='')
         self.connection_string = (
             f"postgresql://{POSTGRES_SETTINGS['user']}:"
-            f"{POSTGRES_SETTINGS['password']}@"
+            f"{encoded_password}@"
             f"{POSTGRES_SETTINGS['host']}:"
             f"{POSTGRES_SETTINGS['port']}/"
             f"{POSTGRES_SETTINGS['database']}"

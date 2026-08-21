@@ -23,10 +23,13 @@ def info_collector_node(state, config):
         if not questions:
             log_node_execution(thread_id, "Info Collector", f"Generating questions for '{product_type}'")
             
+            user_query = state.get("original_user_query", state.get("user_query", ""))
+            
             # Use LangChain's native structured output with JSON mode
             structured_llm = llm.with_structured_output(QuestionList, method='json_mode')
             result: QuestionList = structured_llm.invoke(
                 PROMPT.format(
+                    user_query=user_query,
                     product_type=product_type,
                     intent=intent
                 )

@@ -77,12 +77,20 @@ def data_retrieval_node(state, config):
         # Extract from intent
         category = intent.get("product_category")
         max_price = intent.get("max_price")
+        # Construct a highly targeted search query using the original query + user's answers
+        search_terms = [user_query]
+        for key, val in collected_info.items():
+            if val and isinstance(val, str) and val.lower() not in ["no", "none", "n/a"]:
+                search_terms.append(val)
+        
+        search_query = " ".join(search_terms)
+        log_node_execution(thread_id, "Data Retrieval", f"Constructed search query: '{search_query}'")
         
         # 2️⃣ Decide flow
         if not category or category not in ALLOWED_CATEGORIES:
             log_node_execution(thread_id, "Data Retrieval", "Category not in allowed list → Web Search")
             # ---- WEB FALLBACK ----
-            raw_results = web_search.invoke({"query": user_query})
+            raw_results = web_search.invoke({"query": search_query})
 
             # Use LangChain's native structured output for web extraction
             from app.schemas.pydantic_output_schemas.web_extraction_schema import WebExtractionSchema
@@ -121,7 +129,7 @@ def data_retrieval_node(state, config):
         # ---- FALLBACK CHECK ----
         if not products:
             log_node_execution(thread_id, "Data Retrieval", "API returned 0 products → Fallback to Web")
-            raw_results = web_search.invoke({"query": user_query})
+            raw_results = web_search.invoke({"query": search_query})
             try:
                 products = (WEB_EXTRACT_PROMPT | llm | parser).invoke({
                     "search_results": raw_results

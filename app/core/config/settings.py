@@ -8,7 +8,8 @@ ALLOWED_CATEGORIES = {
 MEMORY_FILE = "memory/long_term_memory.json"
 MAX_RECENT_MESSAGES = 6  
 
-DB_URI = "postgresql://postgres:postgrespassword@localhost:5432/chatbot_memory?sslmode=disable"
+DB_URI = "postgresql://postgres:Vedank10%40@localhost:5432/chatbot_memory?sslmode=disable"
+
 
 # PostgreSQL settings for checkpointer
 POSTGRES_SETTINGS = {
@@ -16,7 +17,7 @@ POSTGRES_SETTINGS = {
     "port": "5432",
     "database": "chatbot_memory",
     "user": "postgres",
-    "password": "postgrespassword"
+    "password": "Vedank10@"
 }
 
 # Namespaces

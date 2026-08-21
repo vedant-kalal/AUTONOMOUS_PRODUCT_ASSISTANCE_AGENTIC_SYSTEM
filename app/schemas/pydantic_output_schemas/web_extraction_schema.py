@@ -9,7 +9,9 @@ class Product(BaseModel):
     description: Optional[str] = Field(None, description="Product description")
     category: Optional[str] = Field(None, description="Product category")
     brand: Optional[str] = Field(None, description="Product brand")
-    url: Optional[str] = Field(None, description="Product URL")
+    url: Optional[str] = Field(None, description="Product URL or purchase link")
+    thumbnail: Optional[str] = Field(None, description="Product thumbnail image URL")
+    rating: Optional[float] = Field(None, description="Product rating out of 5")
 
 
 class WebExtractionSchema(BaseModel):

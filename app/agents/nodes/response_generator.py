@@ -3,11 +3,13 @@ from app.core.config.llm_provider import load_llm
 from app.core.prompt.response_generator_prompt import response_generator_prompt
 from app.core.prompt.web_extract_prompt import web_extract_prompt
 from app.tools.system_tools import Tools
+from app.tools.url_shortener import shorten_products_urls
 from app.schemas.pydantic_output_schemas.product_filter_schema import ProductMatchSchema
 from app.schemas.pydantic_output_schemas.web_extraction_schema import WebExtractionSchema
 from app.core.prompt.filter_prompt import filter_prompt
 from app.core.logging.utils import log_node_execution, log_error
 from dotenv import load_dotenv, find_dotenv
+import json
 load_dotenv(find_dotenv(), override=True)
 
 llm = load_llm()
@@ -33,22 +35,31 @@ def response_generator_node(state, config):
         
         # Step 1: Filter products to match user's specific request
         all_products = data.get("products", [])
+        source = data.get("source", "")
         
         if all_products:
-            log_node_execution(thread_id, "Response Generator", f"Filtering {len(all_products)} products")
-            
-            structured_llm = llm.with_structured_output(ProductMatchSchema, method='json_mode')
-            filtered: ProductMatchSchema = structured_llm.invoke(
-                FILTER_PROMPT.format(
-                    original_query=original_query,
-                    collected_info=collected_info,
-                    products=all_products
-                )
-            )
+            if source in ["web", "web_fallback"]:
+                # Products from web are already highly targeted by Google Shopping; skip LLM filter
+                log_node_execution(thread_id, "Response Generator", f"Skipping filter for {len(all_products)} web products")
+                matching_products = all_products
+                has_matches = True
+            else:
+                log_node_execution(thread_id, "Response Generator", f"Filtering {len(all_products)} API products")
                 
-            matching_products = filtered.matching_products
-            has_matches = filtered.has_matches
-            log_node_execution(thread_id, "Response Generator", f"Found {len(matching_products)} matches")
+                products_json = json.dumps(all_products, ensure_ascii=False, default=str)
+                
+                structured_llm = llm.with_structured_output(ProductMatchSchema, method='json_mode')
+                filtered: ProductMatchSchema = structured_llm.invoke(
+                    FILTER_PROMPT.format(
+                        original_query=original_query,
+                        collected_info=json.dumps(collected_info, default=str),
+                        products=products_json
+                    )
+                )
+                    
+                matching_products = filtered.matching_products
+                has_matches = filtered.has_matches
+                log_node_execution(thread_id, "Response Generator", f"Found {len(matching_products)} matches")
         else:
             matching_products = []
             has_matches = False
@@ -84,12 +95,16 @@ def response_generator_node(state, config):
                 log_error(thread_id, "Web Search", e)
                 matching_products = []
         
-        # Step 3: Generate final response
+        # Step 3: Shorten product URLs before sending to LLM context
+        log_node_execution(thread_id, "Response Generator", "Shortening product URLs for context window")
+        matching_products_for_llm = shorten_products_urls(matching_products)
+
+        # Step 4: Generate final response
         response = llm.invoke(
             RESPONSE_PROMPT.format(
                 user_query=original_query,
-                collected_info=collected_info,
-                products=matching_products
+                collected_info=json.dumps(collected_info, default=str),
+                products=json.dumps(matching_products_for_llm, ensure_ascii=False, default=str)
             )
         )
         
@@ -98,13 +113,10 @@ def response_generator_node(state, config):
         
         state["final_output"] = {
             "response": final_response,
-            "products": matching_products,
-            "source": "web" if not all_products else "database"
+            # Store shortened-URL version so UI links are also short
+            "products": matching_products_for_llm,
+            "source": "web" if not all_products else data.get("source", "database")
         }
-        
-        # Store for memory
-        state["collected_info"]["products"] = matching_products
-        state["collected_info"]["source"] = "web" if not all_products else "database"
         
         return state
         

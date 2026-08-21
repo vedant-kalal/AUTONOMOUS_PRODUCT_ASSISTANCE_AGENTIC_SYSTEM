@@ -47,18 +47,23 @@ class Tools:
 
 
     @tool
-    def web_search(query: str) -> List[Dict[str, Any]]:
-        """Search the web using Google (Serper) or fallback to DuckDuckGo."""
+    def web_search(query: str) -> str:
+        """Search the web using Google (Serper) Shopping or fallback to DuckDuckGo. Returns JSON string."""
         try:
-            # Try Google Serper first (Requires SERPER_API_KEY in .env)
-            if os.environ.get("SERPER_API_KEY"):
-                from langchain_community.utilities import GoogleSerperAPIWrapper
-                search = GoogleSerperAPIWrapper()
-                return search.run(query)
+            api_key = os.environ.get("SERPER_API_KEY")
+            if api_key:
+                url = "https://google.serper.dev/shopping"
+                payload = json.dumps({"q": query, "num": 10})
+                headers = {'X-API-KEY': api_key, 'Content-Type': 'application/json'}
+                response = requests.post(url, headers=headers, data=payload, timeout=10)
+                if response.status_code == 200:
+                    return json.dumps(response.json())
                 
             # Fallback to DuckDuckGo
-            search = DuckDuckGoSearchRun()
-            return search.run(query)
+            from langchain_community.tools import DuckDuckGoSearchResults
+            search = DuckDuckGoSearchResults(output_format="list")
+            res = search.invoke({"query": query})
+            return json.dumps(res)
         except Exception as e:
             return f"Search failed: {str(e)}"
 
