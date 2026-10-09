@@ -22,7 +22,9 @@ Analyze the query and decide: Is this a NEW product search OR a follow-up questi
 
 **🔍 Detection Rules (Priority Order):**
 
-1. **Route to "conversation" if ANY of these are true:**
+0. **Check this FIRST, before anything else:** Is there actually a product being discussed in "Long Term Memory (LTM) Context" or "Recent Conversation"? Chit-chat, greetings, introductions ("hi", "hello my name is X", "thanks"), or an empty/placeholder LTM context do NOT count as an existing product. If NO product exists in that context, and the user's current query clearly names something they want to find/buy (e.g. "I need X", "find me X", "show me X", "X under $Y"), you MUST route to **agentic** — never fall back to "conversation" just because the conversation history is non-empty. "History is non-empty" and "history discusses a product" are different things; only the second one triggers rule 1 below.
+
+1. **Route to "conversation" if ANY of these are true (and rule 0 did not already apply):**
    - Query asks about **attributes of a product mentioned in history/LTM**
      - Attribute keywords: price, cost, name, title, brand, color, shade, size, specification, feature, detail, availability, stock, review, rating, warranty, shipping
      - Examples:
@@ -68,12 +70,13 @@ Analyze the query and decide: Is this a NEW product search OR a follow-up questi
 - ONLY route to agentic if new product type is EXPLICITLY stated (e.g., "find me laptop" when discussing shoes)
 
 **Decision Logic:**
-1. Check if query is vague/short → YES = **conversation** (safest assumption)
-2. Check if query mentions product from LTM/history → YES = check for attributes
-3. Check if query has attribute keywords → YES = **conversation**
-4. Check if query EXPLICITLY wants different product type → YES = **agentic**
-5. Check if query is UNSAFE/EXPLICIT → YES = **conversation** (Safety Fallback)
-6. Default → **conversation** (safer to stay in context)
+1. Check rule 0: is there NO product anywhere in LTM/history, and does the query clearly ask to find/buy something? → YES = **agentic** (stop here)
+2. Check if query is vague/short (and rule 1 did not apply) → YES = **conversation** (safest assumption)
+3. Check if query mentions product from LTM/history → YES = check for attributes
+4. Check if query has attribute keywords → YES = **conversation**
+5. Check if query EXPLICITLY wants different product type → YES = **agentic**
+6. Check if query is UNSAFE/EXPLICIT → YES = **conversation** (Safety Fallback)
+7. Default → **conversation** (safer to stay in context, but only once an existing product context has been established)
 
 ---
 

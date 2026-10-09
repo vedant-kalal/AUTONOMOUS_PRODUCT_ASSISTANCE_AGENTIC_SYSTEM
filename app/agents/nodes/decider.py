@@ -1,13 +1,14 @@
 from typing import Literal
 from langchain_core.prompts import ChatPromptTemplate
 
-from app.core.config.llm_provider import load_llm
+from app.core.config.llm_provider import load_fast_llm
 from app.core.prompt.decider_prompt import decider_prompt
 from app.memory.memory_store import Memory_Functions
 from app.schemas.pydantic_output_schemas.decider_schema import DeciderSchema
 from app.core.logging.utils import log_decision, log_node_execution
 
-llm = load_llm()
+# Routing is a quick classification task — use the cheap/fast model
+llm = load_fast_llm()
 DECIDER_PROMPT = decider_prompt()
 
 

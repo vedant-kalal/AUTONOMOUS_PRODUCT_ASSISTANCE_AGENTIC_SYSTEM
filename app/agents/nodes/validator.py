@@ -1,9 +1,10 @@
-from app.core.config.llm_provider import load_llm
+from app.core.config.llm_provider import load_fast_llm
 from app.core.config.settings import ALLOWED_CATEGORIES
 from app.core.prompt.validator_prompt import validator_prompt
 from app.schemas.pydantic_output_schemas.validator_schema import ValidatorSchema
 
-llm = load_llm()
+# Validation is a quick classification task — use the cheap/fast model
+llm = load_fast_llm()
 PROMPT = validator_prompt()
 
 

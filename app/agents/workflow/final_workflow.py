@@ -9,6 +9,7 @@ from app.agents.nodes.decider import decider_node
 from app.agents.nodes.conversational import conversational_node
 from app.agents.nodes.intent_analyzer import intent_analyzer_node
 from app.agents.nodes.supervisor import supervisor_node
+from app.agents.nodes.question_generator import question_generator_node
 from app.agents.nodes.info_collector import info_collector_node
 from app.agents.nodes.validator import validator_node
 from app.agents.nodes.query_refinement import query_refinement_node
@@ -53,6 +54,7 @@ graph.add_node("conversation", conversational_node)
 
 graph.add_node("intent", intent_analyzer_node)
 graph.add_node("supervisor", supervisor_node)
+graph.add_node("question_generator", question_generator_node)
 graph.add_node("info_collector", info_collector_node)
 graph.add_node("validator", validator_node)
 graph.add_node("query_refinement", query_refinement_node)
@@ -82,12 +84,18 @@ graph.add_conditional_edges(
     "supervisor",
     supervisor_router,
     {
-        "need_info": "info_collector",
+        "need_info": "question_generator",
         "invalid": "validator",
         "ready": "query_refinement",  # Changed: go to query_refinement first
         "end": END,
     },
 )
+
+# Generate questions (LLM call, checkpoints normally) before the interrupt-only node.
+# Kept separate from info_collector because LangGraph replays a node's code from the top
+# on every resume from an interrupt inside it — regenerating questions there would produce
+# different wording each time and silently break matching against the collected answers.
+graph.add_edge("question_generator", "info_collector")
 
 # Info collector loops back to supervisor after collecting info
 graph.add_edge("info_collector", "supervisor")  # Fixed: loops back for continuation

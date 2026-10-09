@@ -13,4 +13,6 @@ python-dotenv
 duckduckgo-search
 langgraph-checkpoint-postgres
 rich
-pyfiglet    
+pyfiglet
+streamlit-mic-recorder
+requests

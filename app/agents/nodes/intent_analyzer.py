@@ -1,10 +1,11 @@
-from app.core.config.llm_provider import load_llm
+from app.core.config.llm_provider import load_fast_llm
 from app.core.prompt.intent_analyzer_prompt import intent_analyzer_prompt
 from app.schemas.pydantic_output_schemas.intent_schema import IntentSchema
 from app.memory.memory_store import Memory_Functions
 from app.core.logging.utils import log_node_execution
 
-llm = load_llm()
+# Intent extraction is a quick classification/extraction task — use the cheap/fast model
+llm = load_fast_llm()
 INTENT_PROMPT = intent_analyzer_prompt()
 
 def intent_analyzer_node(state, config):

@@ -6,6 +6,7 @@ You are a product filter.
 
 User's Original Request: {original_query}
 Collected Details: {collected_info}
+Past User Feedback (thumbs up/down on previous recommendations — use it to bias filtering when relevant): {feedback_context}
 
 All Products Retrieved:
 {products}

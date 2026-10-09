@@ -40,8 +40,10 @@ class CheckpointerHelper:
             setup_conn.close()
             
             # Create persistent connection for checkpointer use
-            # Use a regular connection (no context manager)
-            self.conn = psycopg.connect(conn_string)
+            # autocommit=True: without it, checkpoint writes never commit to disk (only
+            # visible within this same uncommitted transaction), so any interrupted
+            # conversation is silently lost if the process restarts.
+            self.conn = psycopg.connect(conn_string, autocommit=True)
             self.checkpointer = PostgresSaver(self.conn)
             
             print("✓ PostgreSQL checkpointer initialized")

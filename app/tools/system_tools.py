@@ -53,7 +53,7 @@ class Tools:
             api_key = os.environ.get("SERPER_API_KEY")
             if api_key:
                 url = "https://google.serper.dev/shopping"
-                payload = json.dumps({"q": query, "num": 10})
+                payload = json.dumps({"q": query, "gl": "in", "hl": "en", "num": 10})
                 headers = {'X-API-KEY': api_key, 'Content-Type': 'application/json'}
                 response = requests.post(url, headers=headers, data=payload, timeout=10)
                 if response.status_code == 200:

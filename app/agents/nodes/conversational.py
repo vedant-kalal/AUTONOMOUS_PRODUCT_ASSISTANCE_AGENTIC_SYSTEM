@@ -44,15 +44,13 @@ def conversational_node(state, config):
             
             if products:
                 import json
-                product = products[0]
-                title = product.get("title", "Unknown Product")
-                category = product.get("category", "Unknown Category")
-                price = product.get("price", "N/A")
                 
                 if i == 0:
-                    # Detailed view for the MOST RECENT product
-                    product_json = json.dumps(product, indent=2)
-                    ltm_context += f"\n**Most Recent Product ({title}):**\n{product_json}\n"
+                    # Detailed view for the MOST RECENT search — include ALL products
+                    ltm_context += f"\n**Most Recent Product Search (ALL {len(products)} products):**\n"
+                    for idx, product in enumerate(products):
+                        ltm_context += f"\n--- Product {idx + 1}: {product.get('title', 'Unknown')} ---\n"
+                        ltm_context += json.dumps(product, indent=2) + "\n"
                     
                     recommendation_text = product_data.get("recommendation_text", "")
                     if recommendation_text:
@@ -69,9 +67,11 @@ def conversational_node(state, config):
                                 ltm_context += f"- {key.replace('_', ' ').title()}: {value}\n"
                 else:
                     # Summarized view for OLDER products
-                    ltm_context += f"\n**Previous Product {i} ({title}):**\n"
-                    ltm_context += f"- Category: {category}\n"
-                    ltm_context += f"- Price: {price}\n"
+                    first_product = products[0]
+                    title = first_product.get('title', 'Unknown Product')
+                    ltm_context += f"\n**Previous Search {i} (first product: {title}, {len(products)} total):**\n"
+                    ltm_context += f"- Category: {first_product.get('category', 'N/A')}\n"
+                    ltm_context += f"- Price: {first_product.get('price', 'N/A')}\n"
                     if user_intent:
                          ltm_context += f"- User Wanted: {user_intent.get('product_type', 'Product')}\n"
             
@@ -79,8 +79,8 @@ def conversational_node(state, config):
             
         # Log the primary (latest) product for tracing
         if ltm_items:
-            latest = ltm_items[0].get("products", [{}])[0]
-            log_node_execution(thread_id, "Conversational", f"Primary Context: {latest.get('title', 'N/A')}")
+            latest_products = ltm_items[0].get("products", [{}])
+            log_node_execution(thread_id, "Conversational", f"Products in context: {len(latest_products)}")
             log_node_execution(thread_id, "Conversational", f"History Depth: {len(ltm_items)} items")
     
     # Invoke LLM with web search tool
@@ -115,21 +115,35 @@ def conversational_node(state, config):
         for tool_call in response.tool_calls:
             if tool_call['name'] == 'web_search':
                 search_results = web_search.invoke(tool_call['args'])
-                
-                # Re-invoke LLM with search results
-                search_response = llm.invoke(
-                    f"""Based on the web search results below, answer the user's question.
 
-Web Search Results:
-{search_results}
-
-User Question: {query}
-
-Provide a clear, helpful answer based on the search results. If the results don't contain relevant information, say so honestly.
-
-Answer:"""
+                # Re-invoke LLM with search results — use full formatted product prompt
+                web_prompt = (
+                    "You are an expert product recommendation assistant. Answer the user's question using the web search results below.\n\n"
+                    f"Web Search Results:\n{search_results}\n\n"
+                    f"User's Original Context (products previously recommended):\n{ltm_context}\n\n"
+                    f"User Question: {query}\n\n"
+                    "---\n\n"
+                    "INSTRUCTIONS:\n"
+                    "- If the search results contain PRODUCTS (shopping results with prices), format each one as a rich product card:\n\n"
+                    "### [Product Name]\n"
+                    "🖼️ ![Product Image](image_url_if_available)\n"
+                    "💰 **Price**: ₹X,XXX (or as shown in results)\n"
+                    "⭐ **Rating**: X/5 (if available)\n"
+                    "🏷️ **Brand**: Brand name (if available)\n"
+                    "🌿 **Eco-Score**: X/10 — [one-line reasoning based on brand/materials/durability]\n"
+                    "📝 **Why it matches**: [1-2 sentences relating to user's question]\n"
+                    "✨ **Key Features**: [2-3 bullet points]\n"
+                    "🔗 **[View / Buy](product_url)**\n\n"
+                    "- If the search results answer a SPECIFIC SPEC question (e.g. display brightness, battery life), "
+                    "give a direct clear answer citing the product name and spec value.\n"
+                    "- ALWAYS include View/Buy links if URLs are available in the search results.\n"
+                    "- NEVER say you don't know if the search results have relevant data.\n"
+                    "- If results are truly empty or irrelevant, say so and suggest checking the retailer page directly.\n\n"
+                    "Answer:"
                 )
-                
+
+                search_response = llm.invoke(web_prompt)
+
                 # Extract text from search response
                 if isinstance(search_response.content, list):
                     final_response = ""
@@ -142,10 +156,10 @@ Answer:"""
                 else:
                     final_response = str(search_response.content)
                 break
-    
+
     state["final_output"] = {
         "type": "conversation",
         "response": final_response
     }
-    
+
     return state

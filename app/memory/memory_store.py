@@ -5,7 +5,10 @@ from datetime import datetime
 from langchain_core.messages import HumanMessage, AIMessage, RemoveMessage, BaseMessage
 from langgraph.store.postgres import PostgresStore
 
-from app.core.config.settings import STM_NAMESPACE, LTM_NAMESPACE, SUMMARY_NAMESPACE, MAX_STM_MESSAGES, RECENT_WINDOW_SIZE, DB_URI
+from app.core.config.settings import (
+    STM_NAMESPACE, LTM_NAMESPACE, SUMMARY_NAMESPACE, MAX_STM_MESSAGES, RECENT_WINDOW_SIZE, DB_URI,
+    USER_PROFILE_NAMESPACE, FEEDBACK_NAMESPACE, WISHLIST_NAMESPACE, SHARE_NAMESPACE,
+)
 from app.core.logging.base import get_logger
 
 
@@ -225,3 +228,109 @@ class Memory_Functions:
             namespace = LTM_NAMESPACE + (thread_id,)
             for it in store.search(namespace):
                 store.delete(namespace, key=it.key)
+
+    # ----------------------------
+    # USER PROFILE (cross-thread, durable preferences)
+    # ----------------------------
+    @classmethod
+    def get_user_profile(cls) -> Dict[str, Any]:
+        """Get durable preferences (size, skin type, favorite brand, etc.) learned across all threads"""
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            items = list(store.search(USER_PROFILE_NAMESPACE))
+            profile: Dict[str, Any] = {}
+            for it in items:
+                profile.update(it.value)
+            return profile
+
+    @classmethod
+    def update_user_profile(cls, new_facts: Dict[str, Any]) -> None:
+        """Merge new durable facts into the persistent user profile"""
+        if not new_facts:
+            return
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            items = list(store.search(USER_PROFILE_NAMESPACE))
+            existing: Dict[str, Any] = {}
+            for it in items:
+                existing.update(it.value)
+            existing.update({k: v for k, v in new_facts.items() if v})
+            store.put(USER_PROFILE_NAMESPACE, key="profile", value=existing)
+
+    # ----------------------------
+    # FEEDBACK (thumbs up/down on recommendations)
+    # ----------------------------
+    @classmethod
+    def store_feedback(cls, product_title: str, rating: int, thread_id: str = "default",
+                        brand: Optional[str] = None, category: Optional[str] = None) -> None:
+        """Record a thumbs up (+1) or thumbs down (-1) on a recommended product"""
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            store.put(
+                FEEDBACK_NAMESPACE,
+                key=str(datetime.utcnow().timestamp()),
+                value={
+                    "product_title": product_title,
+                    "brand": brand,
+                    "category": category,
+                    "rating": rating,
+                    "thread_id": thread_id,
+                    "created_at": datetime.utcnow().isoformat(),
+                },
+            )
+
+    @classmethod
+    def get_recent_feedback(cls, limit: int = 15) -> List[Dict[str, Any]]:
+        """Get the most recent feedback entries across all threads"""
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            items = list(store.search(FEEDBACK_NAMESPACE))
+            items.sort(key=lambda x: x.key)
+            return [it.value for it in items[-limit:]]
+
+    # ----------------------------
+    # WISHLIST (save products for later)
+    # ----------------------------
+    @classmethod
+    def add_to_wishlist(cls, product: Dict[str, Any]) -> None:
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            store.put(
+                WISHLIST_NAMESPACE,
+                key=str(datetime.utcnow().timestamp()),
+                value={"product": product, "saved_at": datetime.utcnow().isoformat()},
+            )
+
+    @classmethod
+    def get_wishlist(cls) -> List[Dict[str, Any]]:
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            items = list(store.search(WISHLIST_NAMESPACE))
+            items.sort(key=lambda x: x.key, reverse=True)
+            return [{"key": it.key, **it.value} for it in items]
+
+    @classmethod
+    def remove_from_wishlist(cls, key: str) -> None:
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            store.delete(WISHLIST_NAMESPACE, key=key)
+
+    # ----------------------------
+    # SHAREABLE RESULT SNAPSHOTS
+    # ----------------------------
+    @classmethod
+    def store_shared_result(cls, token: str, snapshot: Dict[str, Any]) -> None:
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            store.put(
+                SHARE_NAMESPACE,
+                key=token,
+                value={**snapshot, "created_at": datetime.utcnow().isoformat()},
+            )
+
+    @classmethod
+    def get_shared_result(cls, token: str) -> Optional[Dict[str, Any]]:
+        with PostgresStore.from_conn_string(DB_URI) as store:
+            store.setup()
+            item = store.get(SHARE_NAMESPACE, key=token)
+            return item.value if item else None
